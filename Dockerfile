@@ -1,4 +1,4 @@
-FROM php:7.4-apache
+FROM php:7.3.5-apache
 RUN apt-get update \
     && apt-get install -y \
     	git  mercurial curl  wget memcached mcrypt \
@@ -6,9 +6,7 @@ RUN apt-get update \
 		libssl-dev libc-client-dev libkrb5-dev libpq-dev \
 		libghc-postgresql-libpq-dev libxml2-dev libmcrypt-dev \
 		zlib1g-dev \
-
 	&& pear install Mail Mail_mime Net_SMTP \
-
 	&& docker-php-ext-configure gd --with-jpeg-dir=/usr/lib \
 	&& docker-php-ext-install -j$(nproc) gd \
 	&& docker-php-ext-configure imap --with-imap-ssl --with-kerberos \
